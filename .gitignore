@@ -1,1 +1,10 @@
+# Eclipse
+/.settings
+.project
+
+# IDEA
+/.idea
+*.iml
+
+# Maven
 /target
