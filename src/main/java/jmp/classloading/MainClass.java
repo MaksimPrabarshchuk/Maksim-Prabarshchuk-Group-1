@@ -28,7 +28,10 @@ public class MainClass {
 
                 Scanner scanner = new Scanner(System.in);
                 int itemNumber = scanner.nextInt();
-                if (itemNumber == files.size()) System.exit(0);
+                if (itemNumber == files.size()) {
+                    System.exit(0);
+                }
+                loadClassFromJar(files.get(itemNumber));
             }
         } catch (Exception e) {
             LOG.error(e.getStackTrace());
@@ -61,5 +64,25 @@ public class MainClass {
             LOG.error(e.getStackTrace());
         }
         return files;
+    }
+
+    protected static void loadClassFromJar(Path path) {
+        if (path == null) {
+            LOG.error("File path is null");
+            return;
+        }
+        ClassLoader parentClassLoader = JarClassLoader.class.getClassLoader();
+        JarClassLoader jarClassLoader;
+        Class objectClass;
+        try {
+            jarClassLoader = new JarClassLoader(parentClassLoader, path.toString());
+            objectClass = jarClassLoader.loadClass("MessagePrinter");
+            MessagePrinter messagePrinter = (MessagePrinter) objectClass.newInstance();
+        } catch (IOException
+                | ClassNotFoundException
+                | InstantiationException
+                | IllegalAccessException e) {
+            LOG.error("Failed to load a class from file");
+        }
     }
 }
