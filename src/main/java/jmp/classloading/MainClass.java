@@ -18,12 +18,13 @@ import org.apache.log4j.Logger;
 public class MainClass {
 
     private static final Logger LOG = Logger.getLogger("MainClass");
-    private static final String DEFAULT_JAR_FOLDER = "\\jar";
+    private static final String USER_DIRECTORY = "user.dir";
+    private static final String DEFAULT_JAR_FOLDER = "/jar";
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         try {
             for (;;) {
-                List<Path> files = listFilesFromDefaultDirectory();
+                List<Path> files = listFilesFromDirectory();
                 renderMenu(files);
 
                 Scanner scanner = new Scanner(System.in);
@@ -47,9 +48,9 @@ public class MainClass {
         System.out.print("Please enter item number: ");
     }
 
-    protected static List<Path> listFilesFromDefaultDirectory() {
+    protected static List<Path> listFilesFromDirectory() {
         List<Path> files = new ArrayList<>();
-        String workingDir = System.getProperty("user.dir");
+        String workingDir = System.getProperty(USER_DIRECTORY);
         Path path = Paths.get(workingDir + DEFAULT_JAR_FOLDER);
         DirectoryStream<Path> stream;
         try {
@@ -71,13 +72,11 @@ public class MainClass {
             LOG.error("File path is null");
             return;
         }
-        ClassLoader parentClassLoader = JarClassLoader.class.getClassLoader();
-        JarClassLoader jarClassLoader;
-        Class objectClass;
         try {
-            jarClassLoader = new JarClassLoader(parentClassLoader, path.toString());
-            objectClass = jarClassLoader.loadClass("MessagePrinter");
+            JarClassLoader jarClassLoader = new JarClassLoader(path.toString());
+            Class objectClass = jarClassLoader.loadClass("jmp.classloading.DefaultMessagePrinter");
             MessagePrinter messagePrinter = (MessagePrinter) objectClass.newInstance();
+            messagePrinter.printMessage();
         } catch (IOException
                 | ClassNotFoundException
                 | InstantiationException

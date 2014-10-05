@@ -1,6 +1,7 @@
 package jmp.classloading;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -23,29 +24,32 @@ public class JarClassLoader extends ClassLoader {
     private static final Logger LOG = Logger.getLogger("JarClassLoader");
     private JarFile file;
 
-    public JarClassLoader(ClassLoader parent, String filename) throws IOException {
-        super(parent);
+    public JarClassLoader(String filename) throws IOException {
+        super(JarClassLoader.class.getClassLoader());
         this.file = new JarFile(filename);
     }
 
-    public Class loadClass(String name) throws ClassNotFoundException {
-        JarEntry entry = this.file.getJarEntry(name.replace('.', '/') + ".class");
+    @Override
+    public Class<?> findClass(String className) throws ClassNotFoundException {
+        JarEntry entry = this.file.getJarEntry(className.replace('.', '/') + ".class");
         if (entry == null) {
-            throw new ClassNotFoundException(name);
+            throw new ClassNotFoundException(className);
         }
         try {
             byte[] array = new byte[1024];
             InputStream in = this.file.getInputStream(entry);
             ByteArrayOutputStream out = new ByteArrayOutputStream(array.length);
             int length = in.read(array);
+
             while (length > 0) {
                 out.write(array, 0, length);
                 length = in.read(array);
             }
-            return defineClass(name, out.toByteArray(), 0, out.size());
-        } catch (IOException e) {
-            LOG.error(e.getStackTrace());
-            throw new ClassNotFoundException(name, e);
+            return defineClass(className, out.toByteArray(), 0, out.size());
+        } catch (FileNotFoundException ex) {
+            return super.findClass(className);
+        } catch (IOException ex) {
+            return super.findClass(className);
         }
     }
 }
