@@ -35,9 +35,8 @@ public class JarClassLoader extends ClassLoader {
         if (entry == null) {
             throw new ClassNotFoundException(className);
         }
-        try {
+        try(InputStream in = this.file.getInputStream(entry)) {
             byte[] array = new byte[1024];
-            InputStream in = this.file.getInputStream(entry);
             ByteArrayOutputStream out = new ByteArrayOutputStream(array.length);
             int length = in.read(array);
 

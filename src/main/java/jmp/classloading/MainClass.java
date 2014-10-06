@@ -56,9 +56,6 @@ public class MainClass {
         try {
             stream = Files.newDirectoryStream(path);
             for (Path entry : stream) {
-                if (Files.isDirectory(entry)) {
-                    files.add(entry);
-                }
                 files.add(entry);
             }
         } catch (IOException e) {
