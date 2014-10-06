@@ -1,23 +1,18 @@
 package jmp.classloading;
 
+import org.apache.log4j.Logger;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.zip.ZipFile;
-
-import org.apache.log4j.Logger;
 
 /**
  * Custom class loader which loads classes from jar file.
  *
  * @author Mikalai_Lohach
- *
  */
 public class JarClassLoader extends ClassLoader {
 
@@ -35,7 +30,7 @@ public class JarClassLoader extends ClassLoader {
         if (entry == null) {
             throw new ClassNotFoundException(className);
         }
-        try(InputStream in = this.file.getInputStream(entry)) {
+        try (InputStream in = this.file.getInputStream(entry)) {
             byte[] array = new byte[1024];
             ByteArrayOutputStream out = new ByteArrayOutputStream(array.length);
             int length = in.read(array);

@@ -1,15 +1,14 @@
 package jmp.classloading;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import org.apache.log4j.Logger;
 
 /**
  * @author Mikalai_Lohach
@@ -52,12 +51,8 @@ public class MainClass {
         List<Path> files = new ArrayList<>();
         String workingDir = System.getProperty(USER_DIRECTORY);
         Path path = Paths.get(workingDir + DEFAULT_JAR_FOLDER);
-        DirectoryStream<Path> stream;
         try {
-            stream = Files.newDirectoryStream(path);
-            for (Path entry : stream) {
-                files.add(entry);
-            }
+            Files.newDirectoryStream(path).forEach(files::add);
         } catch (IOException e) {
             LOG.error(e.getStackTrace());
         }
