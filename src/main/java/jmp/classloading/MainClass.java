@@ -1,6 +1,8 @@
 package jmp.classloading;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,6 +24,7 @@ public class MainClass {
     private static final String DEFAULT_JAR_FOLDER = "/jar";
 
     public static void main(String[] args) {
+        printJvmArguments();
         try {
             for (;;) {
                 List<Path> files = listFilesFromDirectory();
@@ -37,6 +40,13 @@ public class MainClass {
         } catch (Exception e) {
             LOG.error(e.getStackTrace());
         }
+    }
+
+    protected static void printJvmArguments() {
+        RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
+        List<String> arguments = runtimeMxBean.getInputArguments();
+        System.out.println("--------------------------");
+        arguments.forEach(x -> System.out.println(" " + x));
     }
 
     protected static void renderMenu(List<Path> files) {
