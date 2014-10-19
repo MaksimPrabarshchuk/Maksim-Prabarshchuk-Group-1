@@ -32,18 +32,25 @@
                 <configuration>
                     <executable>java</executable>
                     <arguments>
-                        <argument>-Xms${java.gc.xms}</argument>
-                        <argument>-Xmx${java.gc.xmx}</argument>
-                        <argument>-XX:NewSize=${java.gc.new.size}</argument>
-                        <argument>-XX:MaxNewSize=${java.gc.max.new.size}</argument>
-                        <argument>-XX:PermSize=${java.gc.perm.size}</argument>
-                        <argument>-XX:MaxPermSize=${java.gc.max.perm.size}</argument>
-                        <argument>${java.gc.threads}</argument>
-                        <argument>-XX:+${java.gc.type}</argument>
+                        <argument>-XX:ThreadStackSize=2048</argument>
+                        <argument>-Xmx1g</argument>
                         <argument>-classpath</argument>
                         <classpath/>
-                        <argument>jmp.classloading.MainClass</argument>
+                        <argument>jmp.memory.MemoryEater2</argument>
                     </arguments>
+                    <!--<arguments>-->
+                        <!--<argument>-Xms${java.gc.xms}</argument>-->
+                        <!--<argument>-Xmx${java.gc.xmx}</argument>-->
+                        <!--<argument>-XX:NewSize=${java.gc.new.size}</argument>-->
+                        <!--<argument>-XX:MaxNewSize=${java.gc.max.new.size}</argument>-->
+                        <!--<argument>-XX:PermSize=${java.gc.perm.size}</argument>-->
+                        <!--<argument>-XX:MaxPermSize=${java.gc.max.perm.size}</argument>-->
+                        <!--<argument>${java.gc.threads}</argument>-->
+                        <!--<argument>-XX:+${java.gc.type}</argument>-->
+                        <!--<argument>-classpath</argument>-->
+                        <!--<classpath/>-->
+                        <!--<argument>jmp.classloading.MainClass</argument>-->
+                    <!--</arguments>-->
                 </configuration>
             </plugin>
         </plugins>
