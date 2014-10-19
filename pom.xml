@@ -38,7 +38,7 @@
                         <classpath/>
                         <argument>jmp.memory.MemoryEater2</argument>
                     </arguments>
-                    <!--<arguments>-->
+                    <arguments>
                         <!--<argument>-Xms${java.gc.xms}</argument>-->
                         <!--<argument>-Xmx${java.gc.xmx}</argument>-->
                         <!--<argument>-XX:NewSize=${java.gc.new.size}</argument>-->
@@ -50,7 +50,7 @@
                         <!--<argument>-classpath</argument>-->
                         <!--<classpath/>-->
                         <!--<argument>jmp.classloading.MainClass</argument>-->
-                    <!--</arguments>-->
+                    </arguments>
                 </configuration>
             </plugin>
         </plugins>
