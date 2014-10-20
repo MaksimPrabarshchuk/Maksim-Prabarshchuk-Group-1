@@ -32,16 +32,24 @@
                 <configuration>
                     <executable>java</executable>
                     <arguments>
-                        <argument>-Xms${java.gc.xms}</argument>
-                        <argument>-Xmx${java.gc.xmx}</argument>
-                        <argument>-Xmn${java.gc.xmn}</argument>
-                        <argument>-XX:PermSize=${java.gc.perm.size}</argument>
-                        <argument>-XX:MaxPermSize=${java.gc.max.perm.size}</argument>
-                        <argument>${java.gc.threads}</argument>
-                        <argument>-XX:+${java.gc.type}</argument>
+                        <argument>-XX:ThreadStackSize=2048</argument>
+                        <argument>-Xmx1g</argument>
                         <argument>-classpath</argument>
                         <classpath/>
-                        <argument>jmp.classloading.MainClass</argument>
+                        <argument>jmp.memory.MemoryEater2</argument>
+                    </arguments>
+                    <arguments>
+                        <!--<argument>-Xms${java.gc.xms}</argument>-->
+                        <!--<argument>-Xmx${java.gc.xmx}</argument>-->
+                        <!--<argument>-XX:NewSize=${java.gc.new.size}</argument>-->
+                        <!--<argument>-XX:MaxNewSize=${java.gc.max.new.size}</argument>-->
+                        <!--<argument>-XX:PermSize=${java.gc.perm.size}</argument>-->
+                        <!--<argument>-XX:MaxPermSize=${java.gc.max.perm.size}</argument>-->
+                        <!--<argument>${java.gc.threads}</argument>-->
+                        <!--<argument>-XX:+${java.gc.type}</argument>-->
+                        <!--<argument>-classpath</argument>-->
+                        <!--<classpath/>-->
+                        <!--<argument>jmp.classloading.MainClass</argument>-->
                     </arguments>
                 </configuration>
             </plugin>
@@ -54,7 +62,8 @@
                 <java.gc.type>UseSerialGC</java.gc.type>
                 <java.gc.xms>6m</java.gc.xms>
                 <java.gc.xmx>18m</java.gc.xmx>
-                <java.gc.xmn>2m</java.gc.xmn>
+                <java.gc.new.size>2m</java.gc.new.size>
+                <java.gc.max.new.size>2m</java.gc.max.new.size>
                 <java.gc.perm.size>20m</java.gc.perm.size>
                 <java.gc.max.perm.size>30m</java.gc.max.perm.size>
                 <java.gc.threads>-Xms6m</java.gc.threads>
@@ -66,7 +75,8 @@
                 <java.gc.type>UseParallelGC</java.gc.type>
                 <java.gc.xms>3m</java.gc.xms>
                 <java.gc.xmx>12m</java.gc.xmx>
-                <java.gc.xmn>1m</java.gc.xmn>
+                <java.gc.new.size>1m</java.gc.new.size>
+                <java.gc.max.new.size>1m</java.gc.max.new.size>
                 <java.gc.perm.size>20m</java.gc.perm.size>
                 <java.gc.max.perm.size>20m</java.gc.max.perm.size>
                 <java.gc.threads>-Xms3m</java.gc.threads>
@@ -78,7 +88,8 @@
                 <java.gc.type>UseParallelOldGC</java.gc.type>
                 <java.gc.xms>9m</java.gc.xms>
                 <java.gc.xmx>18m</java.gc.xmx>
-                <java.gc.xmn>3m</java.gc.xmn>
+                <java.gc.new.size>3m</java.gc.new.size>
+                <java.gc.max.new.size>3m</java.gc.max.new.size>
                 <java.gc.perm.size>40m</java.gc.perm.size>
                 <java.gc.max.perm.size>40m</java.gc.max.perm.size>
                 <java.gc.threads>-Xms9m</java.gc.threads>
@@ -90,7 +101,8 @@
                 <java.gc.type>UseConcMarkSweepGC</java.gc.type>
                 <java.gc.xms>6m</java.gc.xms>
                 <java.gc.xmx>18m</java.gc.xmx>
-                <java.gc.xmn>2m</java.gc.xmn>
+                <java.gc.new.size>2m</java.gc.new.size>
+                <java.gc.max.new.size>2m</java.gc.max.new.size>
                 <java.gc.perm.size>20m</java.gc.perm.size>
                 <java.gc.max.perm.size>30m</java.gc.max.perm.size>
                 <java.gc.threads>-Xms6m</java.gc.threads>
@@ -102,7 +114,8 @@
                 <java.gc.type>UseConcMarkSweepGC</java.gc.type>
                 <java.gc.xms>2m</java.gc.xms>
                 <java.gc.xmx>18m</java.gc.xmx>
-                <java.gc.xmn>1m</java.gc.xmn>
+                <java.gc.new.size>1m</java.gc.new.size>
+                <java.gc.max.new.size>1m</java.gc.max.new.size>
                 <java.gc.perm.size>24m</java.gc.perm.size>
                 <java.gc.max.perm.size>36m</java.gc.max.perm.size>
                 <java.gc.threads>-XX:ConcGCThreads=2</java.gc.threads>
@@ -112,11 +125,12 @@
             <id>parallel2Collector</id>
             <properties>
                 <java.gc.type>UseParallelGC</java.gc.type>
-                <java.gc.xms>4m</java.gc.xms>
-                <java.gc.xmx>16m</java.gc.xmx>
-                <java.gc.xmn>3m</java.gc.xmn>
-                <java.gc.perm.size>24m</java.gc.perm.size>
-                <java.gc.max.perm.size>32m</java.gc.max.perm.size>
+                <java.gc.xms>3m</java.gc.xms>
+                <java.gc.xmx>12m</java.gc.xmx>
+                <java.gc.new.size>1m</java.gc.new.size>
+                <java.gc.max.new.size>1m</java.gc.max.new.size>
+                <java.gc.perm.size>20m</java.gc.perm.size>
+                <java.gc.max.perm.size>20m</java.gc.max.perm.size>
                 <java.gc.threads>-XX:ParallelGCThreads=2</java.gc.threads>
             </properties>
         </profile>
@@ -126,7 +140,8 @@
                 <java.gc.type>UseG1GC</java.gc.type>
                 <java.gc.xms>4m</java.gc.xms>
                 <java.gc.xmx>16m</java.gc.xmx>
-                <java.gc.xmn>2m</java.gc.xmn>
+                <java.gc.new.size>2m</java.gc.new.size>
+                <java.gc.max.new.size>2m</java.gc.max.new.size>
                 <java.gc.perm.size>12m</java.gc.perm.size>
                 <java.gc.max.perm.size>18m</java.gc.max.perm.size>
                 <java.gc.threads>-Xms4m</java.gc.threads>
