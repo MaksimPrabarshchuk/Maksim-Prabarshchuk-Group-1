@@ -26,6 +26,7 @@ public class UserRepositoryTest extends AbstractBaseTest {
         userRepository.save(user);
     }
 
+    @Test
     public void findByBarcodeTest() {
         UserRepository userRepositoryMock = Mockito.mock(UserRepository.class);
         when(userRepositoryMock.findByBarcode("abc")).thenReturn(null);
