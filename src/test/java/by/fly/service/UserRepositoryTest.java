@@ -6,6 +6,11 @@ import by.fly.repository.UserRepository;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -16,6 +21,8 @@ import static org.mockito.Mockito.*;
  *
  */
 public class UserRepositoryTest extends AbstractBaseTest {
+
+    public static final String ABC = "abc";
 
     @Autowired
     UserRepository userRepository;
@@ -29,7 +36,10 @@ public class UserRepositoryTest extends AbstractBaseTest {
     @Test
     public void findByBarcodeTest() {
         UserRepository userRepositoryMock = Mockito.mock(UserRepository.class);
-        when(userRepositoryMock.findByBarcode("abc")).thenReturn(null);
-        assertThat(verify(userRepositoryMock).findByBarcode("abc"), equalTo(null));
+        final User user = new User("", "", "", null);
+        when(userRepositoryMock.findByBarcode(ABC)).thenReturn(user);
+        assertThat(userRepositoryMock.findByBarcode(ABC), equalTo(user));
+        verify(userRepositoryMock).findByBarcode(ABC);
     }
+
 }

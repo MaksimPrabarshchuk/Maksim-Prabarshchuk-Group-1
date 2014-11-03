@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.epam.jmp</groupId>
-  <artifactId>jmp.classloading</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>JMP: Classloading and GC</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.epam.jmp</groupId>
+    <artifactId>jmp.classloading</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>JMP: Classloading and GC</name>
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -73,6 +74,14 @@
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.gc.type>UseParallelGC</java.gc.type>
+        <java.gc.xms>3m</java.gc.xms>
+        <java.gc.xmx>12m</java.gc.xmx>
+        <java.gc.new.size>1m</java.gc.new.size>
+        <java.gc.max.new.size>1m</java.gc.max.new.size>
+        <java.gc.perm.size>20m</java.gc.perm.size>
+        <java.gc.max.perm.size>20m</java.gc.max.perm.size>
+        <java.gc.threads>-Xms3m</java.gc.threads>
     </properties>
     <build>
         <plugins>
@@ -83,7 +92,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-            </configuration>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -91,36 +100,36 @@
                 <version>1.3.2</version>
                 <configuration>
                     <executable>java</executable>
+                    <!--<arguments>-->
+                    <!--<argument>-XX:ThreadStackSize=2048</argument>-->
+                    <!--<argument>-Xmx1g</argument>-->
+                    <!--<argument>-classpath</argument>-->
+                    <!--<classpath/>-->
+                    <!--<argument>jmp.memory.MemoryEater2</argument>-->
+                    <!--</arguments>-->
                     <arguments>
-                        <argument>-XX:ThreadStackSize=2048</argument>
-                        <argument>-Xmx1g</argument>
+                        <argument>-Xms${java.gc.xms}</argument>
+                        <argument>-Xmx${java.gc.xmx}</argument>
+                        <argument>-XX:NewSize=${java.gc.new.size}</argument>
+                        <argument>-XX:MaxNewSize=${java.gc.max.new.size}</argument>
+                        <argument>-XX:PermSize=${java.gc.perm.size}</argument>
+                        <argument>-XX:MaxPermSize=${java.gc.max.perm.size}</argument>
+                        <argument>${java.gc.threads}</argument>
+                        <argument>-XX:+${java.gc.type}</argument>
                         <argument>-classpath</argument>
                         <classpath/>
-                        <argument>jmp.memory.MemoryEater2</argument>
-                    </arguments>
-                    <arguments>
-                        <!--<argument>-Xms${java.gc.xms}</argument>-->
-                        <!--<argument>-Xmx${java.gc.xmx}</argument>-->
-                        <!--<argument>-XX:NewSize=${java.gc.new.size}</argument>-->
-                        <!--<argument>-XX:MaxNewSize=${java.gc.max.new.size}</argument>-->
-                        <!--<argument>-XX:PermSize=${java.gc.perm.size}</argument>-->
-                        <!--<argument>-XX:MaxPermSize=${java.gc.max.perm.size}</argument>-->
-                        <!--<argument>${java.gc.threads}</argument>-->
-                        <!--<argument>-XX:+${java.gc.type}</argument>-->
-                        <!--<argument>-classpath</argument>-->
-                        <!--<classpath/>-->
-                        <!--<argument>jmp.classloading.MainClass</argument>-->
+                        <argument>jmp.classloading.MainClass</argument>
                     </arguments>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>8.1.2</version>
-                <configuration>
-                    <mainClass>by.fly.ui.JavaFXApplication</mainClass>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+            <!--<groupId>com.zenjava</groupId>-->
+            <!--<artifactId>javafx-maven-plugin</artifactId>-->
+            <!--<version>8.1.2</version>-->
+            <!--<configuration>-->
+            <!--<mainClass>by.fly.ui.JavaFXApplication</mainClass>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
     <profiles>
