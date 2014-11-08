@@ -1,10 +1,10 @@
 # Eclipse
-/.settings
-.project
+*/.settings
+*/.project
 
 # IDEA
-/.idea
-*.iml
+*/.idea
+*/*.iml
 
 # Maven
-/target
+*/target
