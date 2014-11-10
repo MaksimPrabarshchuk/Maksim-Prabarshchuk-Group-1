@@ -6,43 +6,12 @@
     <link href="/css/bootstrap-spinedit.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #f5f5f5;
-        }
-
-        .form-signin {
-            max-width: 300px;
-            padding: 19px 29px 29px;
-            margin: 0 auto 20px;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin input[type="text"],
-        .form-signin input[type="password"] {
-            font-size: 16px;
-            height: auto;
-            margin-bottom: 15px;
-            padding: 7px 9px;
-        }
-    </style>
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <form class="form-signin">
-            <h4 class="form-signin-heading">Registration form</h4>
+        <form class="form-reg">
+            <h4 class="form-reg-heading">Registration form</h4>
             <input type="text" class="input-block-level" placeholder="Full name" style="height: 30px;">
             <input type="text" class="input-block-level" placeholder="Email address" style="height: 30px;">
             <input type="text" class="input-block-level" placeholder="Phone number xxx-xxx-xx-xx" style="height: 30px;">
@@ -54,7 +23,7 @@
                 </span>
             </div>
 
-            <h4 class="form-signin-heading">Delivery options</h4>
+            <h4 class="form-reg-heading">Delivery options</h4>
             <div class="btn-group" style="margin-bottom: 5px;">
                 <select class="form-control">
                     <option value="">Select country</option>
@@ -67,7 +36,7 @@
             <textarea rows="3" placeholder="Address" style="margin-bottom: 15px;"></textarea>
             <input type="text" class="input-block-level" placeholder="Postcode" style="height: 30px;">
 
-            <h4 class="form-signin-heading">Notifications method</h4>
+            <h4 class="form-reg-heading">Notifications method</h4>
             <label class="radio">
                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
                 By email
@@ -87,6 +56,8 @@
         </form>
     </div>
     <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/app.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap-dropdown.js"></script>
     <script src="/js/bootstrap-spinedit.js"></script>
