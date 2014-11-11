@@ -1,3 +1,4 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,9 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-reg">
+        <form:form class="form-reg" method="post" action="/reg-new" modelAttribute="formModel">
             <h4 class="form-reg-heading">Registration form</h4>
-            <input type="text" class="input-block-level" placeholder="Full name" style="height: 30px;">
+            <form:input type="text" class="input-block-level" placeholder="Full name" style="height: 30px;" path="name"/>
             <input type="text" class="input-block-level" placeholder="Email address" style="height: 30px;">
             <input type="text" class="input-block-level" placeholder="Phone number xxx-xxx-xx-xx" style="height: 30px;">
             <input type="text" class="input-block-level" placeholder="Website" style="height: 30px;">
@@ -53,7 +54,7 @@
                 <input type="text" id="spinEdit4" class="aSpinEdit" style="height: 30px;"><br>
             </div>
             <button class="btn btn-large btn-primary" type="submit">Send</button>
-        </form>
+        </form:form>
     </div>
     <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="/js/angular.min.js"></script>
