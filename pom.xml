@@ -13,5 +13,6 @@
     <modules>
         <module>java-backend</module>
         <module>angularjs</module>
+        <module>ejb-jboss</module>
     </modules>
 </project>
