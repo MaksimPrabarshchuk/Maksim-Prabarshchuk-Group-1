@@ -1,0 +1,73 @@
+<div>
+    <form name="regForm" class="form-horizontal" ng-submit="register()">
+        <h2>User Registration</h2>
+        <fieldset>
+            <legend>Register a user:</legend>
+            <div class="form-group">
+                <label for="firstName" class="col-sm-2 control-label">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="firstName" id="firstName" ng-model="newUser.firstName" placeholder="Your First Name" required autofocus/>
+                    <span class="error help-block" ng-show="regForm.name.$error.required">required</span>
+                    <span class="error help-block" ng-show="errors.name">{{errors.firstName}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-sm-2 control-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="email" name="lastName" id="lastName" ng-model="newUser.lastName" placeholder="Your Last Name" required />
+                    <span class="error help-block" ng-show="regForm.email.$error.required">required</span>
+                    <span class="error help-block" ng-show="errors.email">{{errors.lastName}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="age" class="col-sm-2 control-label">Age:</label>
+                <div class="col-sm-10">
+                    <input type="tel" name="age" id="age" ng-model="newUser.age" ng-pattern="/^[0-9]{10,12}$/" placeholder="Your Age" required />
+                    <span class="error help-block" ng-show="regForm.phoneNumber.$error.required">required</span>
+                    <span class="error help-block" ng-show="regForm.phoneNumber.$error.pattern">must be between 18 and 130 digits</span>
+                    <span class="error help-block" ng-show="errors.phoneNumber">{{errors.age}}</span>
+                </div>
+            </div>
+            <ul ng-hide="!successMessages" class="success">
+                <li ng-repeat="message in successMessages">{{message}}</li>
+            </ul>
+            <ul ng-hide="!errorMessages" class="error">
+                <li ng-repeat="message in errorMessages">{{message}}</li>
+            </ul>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" ng-disabled="regForm.$invalid" id="register" value="Register" class="btn btn-primary" />
+                    <input type="button" ng-click="reset()" name="cancel" id="cancel" value="Cancel" class="btn btn-default" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <h2>Users</h2>
+    <em ng-show="users.length == 0">No registered users.</em>
+    <div>
+        <table ng-hide="users.length == 0">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="user in users | orderBy:orderBy">
+                <td>{{user.id}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.age}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        REST URL for all users: <a href="rest/users">/rest/users</a>
+    </div>
+    <div>
+        <input type="button" ng-click="refresh()" name="refresh"
+               id="refresh" value="Refresh" class="btn btn-default" />
+    </div>
+</div>
