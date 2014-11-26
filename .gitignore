@@ -3,7 +3,9 @@
 */.project
 
 # IDEA
+.idea
 */.idea
+*.iml
 */*.iml
 
 # Maven
