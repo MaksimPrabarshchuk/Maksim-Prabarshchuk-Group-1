@@ -4,7 +4,7 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</property>
         <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
         <property name="hibernate.connection.url">jdbc:derby:memory:test;create=true</property>
         <property name="hibernate.connection.username">root</property>
@@ -12,11 +12,12 @@
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
-        <mapping class="com.jmp.model.Address"></mapping>
-        <mapping class="com.jmp.model.Employee"></mapping>
-        <mapping class="com.jmp.model.EmployeeStatus"></mapping>
-        <mapping class="com.jmp.model.Personal"></mapping>
-        <mapping class="com.jmp.model.Project"></mapping>
-        <mapping class="com.jmp.model.Unit"></mapping>
+
+        <mapping class="com.jmp.model.Address"/>
+        <mapping class="com.jmp.model.Employee"/>
+        <mapping class="com.jmp.model.EmployeeStatus"/>
+        <mapping class="com.jmp.model.Personal"/>
+        <mapping class="com.jmp.model.Project"/>
+        <mapping class="com.jmp.model.Unit"/>
     </session-factory>
 </hibernate-configuration>

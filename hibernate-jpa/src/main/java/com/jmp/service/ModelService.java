@@ -13,4 +13,6 @@ public interface ModelService<T> {
     void deleteById(long id);
 
     void update(T model);
+
+    void dispose();
 }

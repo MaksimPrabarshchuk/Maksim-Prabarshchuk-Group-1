@@ -44,4 +44,9 @@ public class DefaultModelService<T> implements ModelService<T> {
     public void update(T model) {
         session.saveOrUpdate(model);
     }
+
+    @Override
+    public void dispose() {
+        session.close();
+    }
 }

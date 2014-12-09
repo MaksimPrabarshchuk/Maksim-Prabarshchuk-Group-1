@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import com.jmp.model.Address;
 import com.jmp.model.Employee;
 import com.jmp.model.Personal;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,6 +29,11 @@ public class DefaultModelServiceTest {
         LocalDateTime authDateTime = LocalDateTime.now();
         employee.setHireDate(hireDate);
         employee.setAuthorizationDatetime(authDateTime);
+    }
+
+    @After
+    public void tearDown() {
+        modelService.dispose();
     }
 
     @Test

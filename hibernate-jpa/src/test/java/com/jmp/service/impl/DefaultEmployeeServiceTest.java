@@ -1,19 +1,18 @@
 package com.jmp.service.impl;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.jmp.model.Address;
+import com.jmp.model.Employee;
+import com.jmp.model.Personal;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.jmp.model.Address;
-import com.jmp.model.Employee;
-
-import com.jmp.model.Personal;
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class DefaultEmployeeServiceTest {
 
@@ -22,6 +21,11 @@ public class DefaultEmployeeServiceTest {
     @Before
     public void setUp() {
         employeeService = new DefaultEmployeeService();
+    }
+
+    @After
+    public void tearDown() {
+        employeeService.dispose();
     }
 
     @Test
@@ -33,6 +37,7 @@ public class DefaultEmployeeServiceTest {
         employeeService.save(employee);
         Employee em = employeeService.findById(employee.getId());
 
+        assertThat(em, instanceOf(Employee.class));
         assertThat(em, notNullValue());
         assertThat(em.getPersonal(), notNullValue());
         assertThat(em.getPersonal().getName(), equalTo(personal.getName()));
@@ -46,19 +51,21 @@ public class DefaultEmployeeServiceTest {
         Address address = new Address("testAddress");
         Personal personal = new Personal("User", 42);
         Employee employee = new Employee(personal, address);
-        LocalDate hireDate = LocalDate.now();
+        LocalDate hireDate = LocalDate.now().minusMonths(5);
         employee.setHireDate(hireDate);
 
         employeeService.save(employee);
         List<Employee> ems = employeeService.searchEmployeeByHireDate(hireDate);
 
         assertThat(ems, hasSize(1));
-        assertThat(ems.get(0).getHireDate(), equalTo(hireDate));
+        final Employee em = ems.get(0);
+        assertThat(em.getId(), equalTo(employee.getId()));
+        assertThat(em.getHireDate(), equalTo(hireDate));
     }
 
     @Test
     public void testSortEmployeeByAuthorizationDatetimeDesc() throws Exception {
-        Employee employee1 = new Employee(new Personal("User1", 42),  new Address("testAddress1"));
+        Employee employee1 = new Employee(new Personal("User1", 42), new Address("testAddress1"));
         LocalDateTime authDateTime1 = LocalDateTime.now();
         employee1.setAuthorizationDatetime(authDateTime1);
 
