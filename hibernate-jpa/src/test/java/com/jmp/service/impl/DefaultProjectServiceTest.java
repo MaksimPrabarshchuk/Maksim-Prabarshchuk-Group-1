@@ -6,7 +6,6 @@ public class DefaultProjectServiceTest extends ProjectServiceTestSupport {
 
     @Test
     public void testProjectCreation() {
-        if (true) throw new RuntimeException("");
         givenProject();
         whenProjectSaved();
         thanProjectIdIsNotNull();
