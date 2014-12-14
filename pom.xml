@@ -15,5 +15,6 @@
         <module>angularjs</module>
         <module>ejb-jboss</module>
         <module>hibernate-jpa</module>
+        <module>spring-core</module>
     </modules>
 </project>
