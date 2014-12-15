@@ -11,9 +11,12 @@
         <defaultGoal>package</defaultGoal>
     </build>
     <modules>
+        <module>mentoring-parent</module>
         <module>java-backend</module>
         <module>angularjs</module>
         <module>ejb-jboss</module>
+        <module>jenkins</module>
         <module>hibernate-jpa</module>
+        <module>spring-core</module>
     </modules>
 </project>
