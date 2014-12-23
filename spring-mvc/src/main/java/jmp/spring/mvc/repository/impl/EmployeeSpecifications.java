@@ -9,7 +9,7 @@ import jmp.spring.mvc.model.Employee;
 import jmp.spring.mvc.model.Employee_;
 import org.springframework.data.jpa.domain.Specification;
 
-public class EmployeeSpecifications {
+public class EmployeeSpecifications { 
 
     public static Specification<Employee> lastNameIsLike(final String searchTerm) {
         return new Specification<Employee>() {

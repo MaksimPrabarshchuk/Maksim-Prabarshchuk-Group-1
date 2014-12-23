@@ -2,15 +2,38 @@ package jmp.spring.mvc.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Employee {
 
+	@Id
+	@GeneratedValue
     private Long id;
+	
+	@NotNull
     private String firstName;
+	
+	@NotNull
     private String lastName;
+	
+	@NotNull
     private String gender;
+	
+	@NotNull
     private LocalDate hireDate;
+    
+    @NotNull
     private String jobTitle;
+    
+    @NotNull
     private Double salary;
+    
+    public Employee() {
+    }
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
