@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h1 class="cover-heading">List of Employees</h1>
 <style type="text/css">
 	.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;width:100%;}
@@ -28,33 +29,53 @@
 			<th class="tg-bsv2">Hire Date</th>
 			<th class="tg-bsv2">Job Title</th>
 			<th class="tg-bsv2">Salary</th>
+			<th class="tg-bsv2">Action</th>
 		</tr>
 	</thead>
 	<tbody>
+        <c:forEach var="em" items="${employees}">
+            <tr>
+                <td class="tg-031e">${em.id}</td>
+                <td class="tg-031e">${em.firstName}</td>
+                <td class="tg-031e">${em.lastName}</td>
+                <td class="tg-031e">${em.gender}</td>
+                <td class="tg-031e">${em.hireDate}</td>
+                <td class="tg-031e">${em.jobTitle}</td>
+                <td class="tg-031e">$${em.salary}</td>
+                <td class="tg-031e">
+                    <a href="editEmployee?id=${em.id}" style="color: #333; font-weight: bold">Edit</a>
+                    <a href="removeEmployee?id=${em.id}" style="color: #333; font-weight: bold">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
 		<tr>
+			<td class="tg-031e">1</td>
 			<td class="tg-031e">Jack</td>
-			<td class="tg-031e">Sales</td>
+			<td class="tg-031e">Wood</td>
 			<td class="tg-031e">555-5555</td>
 			<td class="tg-031e">555-5555</td>
 			<td class="tg-031e">555-5555</td>
-			<td class="tg-031e">555-5555</td>
-			<td class="tg-031e">555-5555</td>
+			<td class="tg-031e">555-55557</td>
+			<td class="tg-031e">
+                <a href="editEmployee" style="color: #333; font-weight: bold">Edit</a>
+                <a href="removeEmployee" style="color: #333; font-weight: bold">Delete</a>
+            </td>
 		</tr>
 	<tbody>
 </table>
 <p class="lead"></p>
 <p class="lead">
-    <a href="#" class="btn btn-lg btn-default">Add Employee</a>
-    <a href="#" class="btn btn-lg btn-default">Remove Employee</a>
+    <a href="addEmployee" class="btn btn-lg btn-default">Add Employee</a>
+    <a href="#" class="btn btn-lg btn-default">Find Employee</a>
 </p>
-<div class="popover-markup" style="color:#333;">
-	<a href="#" class="trigger">Popover link</a> 
-    <div class="head hide">Lorem Ipsum</div>
-    <div class="content hide">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Type something...">
-        </div>
-        <button type="submit" class="btn btn-default btn-block">Submit</button>
-    </div>
-    <div class="footer hide">test</div>
-</div>
+<%--<div class="popover-markup" style="color:#333;">--%>
+	<%--<a href="#" class="trigger">Popover link</a> --%>
+    <%--<div class="head hide">Lorem Ipsum</div>--%>
+    <%--<div class="content hide">--%>
+        <%--<div class="form-group">--%>
+            <%--<input type="text" class="form-control" placeholder="Type something...">--%>
+        <%--</div>--%>
+        <%--<button type="submit" class="btn btn-default btn-block">Submit</button>--%>
+    <%--</div>--%>
+    <%--<div class="footer hide">test</div>--%>
+<%--</div>--%>

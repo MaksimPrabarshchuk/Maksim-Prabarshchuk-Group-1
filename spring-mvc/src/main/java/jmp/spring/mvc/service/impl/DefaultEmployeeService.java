@@ -16,8 +16,13 @@ public class DefaultEmployeeService implements EmployeeService {
 	@Autowired
 	@Qualifier("employeeRepository")
 	private EmployeeRepository employeeRepository;
-	
-	@Override
+
+    @Override
+    public Employee findEmployeeById(long employeeId) {
+        return employeeRepository.findOne(employeeId);
+    }
+
+    @Override
 	public Employee saveEmployee(Employee employee) {
 		return employee == null ? null : employeeRepository.save(employee);
 	}
@@ -27,7 +32,12 @@ public class DefaultEmployeeService implements EmployeeService {
 		return null;
 	}
 
-	@Override
+    @Override
+    public void removeEmployee(long employeeId) {
+        employeeRepository.delete(employeeId);
+    }
+
+    @Override
 	public List<Employee> findAll() {
 		return employeeRepository.findAll();
 	}

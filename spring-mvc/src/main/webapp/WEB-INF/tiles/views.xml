@@ -6,7 +6,10 @@
 	<definition name="index" extends="defaultTemplate">
 	    <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 	</definition>
-<!-- 	<definition name="personList" extends="DefaultTemplate"> -->
-<!-- 	    <put-attribute name="body"	value="/WEB-INF/views/personList.jsp" /> -->
-<!-- 	</definition> -->
+ 	<definition name="addEmployee" extends="defaultTemplate">
+ 	    <put-attribute name="body" value="/WEB-INF/jsp/addEmployee.jsp" />
+ 	</definition>
+    <definition name="editEmployee" extends="defaultTemplate">
+ 	    <put-attribute name="body"	value="/WEB-INF/jsp/editEmployee.jsp" />
+ 	</definition>
 </tiles-definitions>

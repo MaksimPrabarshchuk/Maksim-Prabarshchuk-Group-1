@@ -1,7 +1,6 @@
 package jmp.spring.mvc.controller;
 
 import jmp.spring.mvc.service.EmployeeService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,7 @@ public class IndexController {
 
     @RequestMapping("/")
     public String index(Model model) {
-    	model.addAttribute("employes", employeeService.findAll());
+        model.addAttribute("employees", employeeService.findAll());
         return "index";
     }
 }

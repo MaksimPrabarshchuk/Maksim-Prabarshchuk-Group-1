@@ -1,7 +1,5 @@
 package jmp.spring.mvc.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +10,7 @@ public class Employee {
 
 	@Id
 	@GeneratedValue
-    private Long id;
+    private long id;
 	
 	@NotNull
     private String firstName;
@@ -24,7 +22,7 @@ public class Employee {
     private String gender;
 	
 	@NotNull
-    private LocalDate hireDate;
+    private String hireDate;
     
     @NotNull
     private String jobTitle;
@@ -44,12 +42,24 @@ public class Employee {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getGender() {
@@ -60,11 +70,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public LocalDate getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(LocalDate hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 
