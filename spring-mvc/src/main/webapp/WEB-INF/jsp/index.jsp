@@ -18,6 +18,15 @@
 		    }
 		});
 	});
+	
+	function findEmployee(that) {
+// 		$.ajax({
+// 	        url: "findEmployee",
+// 	        type: "post",
+// 	        data: data
+// 	        error: $(that).("#errorMsg").css('display','block');
+// 	    });
+	}
 </script>
 <table class="tg">
 	<thead>
@@ -43,39 +52,29 @@
                 <td class="tg-031e">${em.jobTitle}</td>
                 <td class="tg-031e">$${em.salary}</td>
                 <td class="tg-031e">
-                    <a href="editEmployee?id=${em.id}" style="color: #333; font-weight: bold">Edit</a>
-                    <a href="removeEmployee?id=${em.id}" style="color: #333; font-weight: bold">Delete</a>
+                    <a href="editEmployee?id=${em.id}" style="color: #333; font-weight: bold"><img src="img/edit.png"></a>
+                    <a href="removeEmployee?id=${em.id}" style="color: #333; font-weight: bold"><img src="img/delete.png"></a>
                 </td>
             </tr>
         </c:forEach>
-		<tr>
-			<td class="tg-031e">1</td>
-			<td class="tg-031e">Jack</td>
-			<td class="tg-031e">Wood</td>
-			<td class="tg-031e">555-5555</td>
-			<td class="tg-031e">555-5555</td>
-			<td class="tg-031e">555-5555</td>
-			<td class="tg-031e">555-55557</td>
-			<td class="tg-031e">
-                <a href="editEmployee" style="color: #333; font-weight: bold">Edit</a>
-                <a href="removeEmployee" style="color: #333; font-weight: bold">Delete</a>
-            </td>
-		</tr>
 	<tbody>
 </table>
 <p class="lead"></p>
-<p class="lead">
-    <a href="addEmployee" class="btn btn-lg btn-default">Add Employee</a>
-    <a href="#" class="btn btn-lg btn-default">Find Employee</a>
-</p>
-<%--<div class="popover-markup" style="color:#333;">--%>
-	<%--<a href="#" class="trigger">Popover link</a> --%>
-    <%--<div class="head hide">Lorem Ipsum</div>--%>
-    <%--<div class="content hide">--%>
-        <%--<div class="form-group">--%>
-            <%--<input type="text" class="form-control" placeholder="Type something...">--%>
-        <%--</div>--%>
-        <%--<button type="submit" class="btn btn-default btn-block">Submit</button>--%>
-    <%--</div>--%>
-    <%--<div class="footer hide">test</div>--%>
-<%--</div>--%>
+<div class="lead" style="display: inline-flex;">
+    <a href="addEmployee" class="btn btn-lg btn-default" style="margin-right: 10px;">Add Employee</a>
+	<div class="popover-markup" style="color:#333;">
+    	<a href="#" class="trigger btn btn-lg btn-default">Find Employee</a>
+	    <div class="head hide">Find Employee</div>
+	    <div class="content hide">
+	        <div class="form-group">
+	            <input name="fistName" type="text" class="form-control" placeholder="Fist name" style="margin-bottom: 10px;">
+	            <input name="lastName" type="text" class="form-control" placeholder="Last name">
+	            <span id="errorMsg" hidden="hidden" style="color: red; margin-top: 10px; text-align: center;">Such employee not found!</span>
+	        </div>
+	        <button type="submit" class="btn btn-default btn-block" style=" border: 1px solid #fff; border-color: #ccc;" 
+	        	onmouseover="$(this).css('background-color','#e6e6e6');" onmouseleave="$(this).css('background-color','#fff');"
+	        	onclick="findEmployee($(this));">Find</button>
+	    </div>
+	    <div class="footer hide">test</div>
+	</div>
+</div>

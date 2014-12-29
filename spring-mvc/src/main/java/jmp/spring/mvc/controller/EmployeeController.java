@@ -25,6 +25,14 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
         return "redirect:/";
     }
+    
+    @RequestMapping(value = "/findEmployee", method = RequestMethod.POST)
+	public String addEmployee(@ModelAttribute("fistName") String fistName,
+			@ModelAttribute("lastName") String lastName) {
+//    	employeeService.findAll()
+//    	model.addAttribute("employee", employeeService.findEmployeeById(id));
+    	return "editEmployee";
+    }
 
     @RequestMapping(value = "/editEmployee", method = RequestMethod.GET)
     public String editEmployeePage(@ModelAttribute("id") long id, Model model) {
