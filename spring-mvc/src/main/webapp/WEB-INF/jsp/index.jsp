@@ -19,13 +19,25 @@
 		});
 	});
 	
+	$("#openFindDialog").click(function() {
+		$("#errorMsg").css('display', 'none');
+	});
+
 	function findEmployee(that) {
-// 		$.ajax({
-// 	        url: "findEmployee",
-// 	        type: "post",
-// 	        data: data
-// 	        error: $(that).("#errorMsg").css('display','block');
-// 	    });
+		$.ajax({
+			type : "POST",
+			url : "/spring-mvc/findEmployee",
+			data : {fistName: $(that).parent().find("#fistName").val(), 
+					lastName: $(that).parent().find("#lastName").val()},
+			success: function(data) {
+				if (data.toString() == 0)
+					$(that).parent().find("#errorMsg").css('display', 'block');
+				else {
+					$(that).parent().find("#errorMsg").css('display', 'none');
+					window.location.replace("http://localhost:8080/spring-mvc/editEmployee?id=" + data.toString());
+				}
+			}
+		});
 	}
 </script>
 <table class="tg">
@@ -63,12 +75,12 @@
 <div class="lead" style="display: inline-flex;">
     <a href="addEmployee" class="btn btn-lg btn-default" style="margin-right: 10px;">Add Employee</a>
 	<div class="popover-markup" style="color:#333;">
-    	<a href="#" class="trigger btn btn-lg btn-default">Find Employee</a>
+    	<a href="#" id="openFindDialog" class="trigger btn btn-lg btn-default">Find Employee</a>
 	    <div class="head hide">Find Employee</div>
 	    <div class="content hide">
 	        <div class="form-group">
-	            <input name="fistName" type="text" class="form-control" placeholder="Fist name" style="margin-bottom: 10px;">
-	            <input name="lastName" type="text" class="form-control" placeholder="Last name">
+	            <input id="fistName" type="text" class="form-control" placeholder="Fist name" style="margin-bottom: 10px;">
+	            <input id="lastName" type="text" class="form-control" placeholder="Last name">
 	            <span id="errorMsg" hidden="hidden" style="color: red; margin-top: 10px; text-align: center;">Such employee not found!</span>
 	        </div>
 	        <button type="submit" class="btn btn-default btn-block" style=" border: 1px solid #fff; border-color: #ccc;" 

@@ -2,12 +2,14 @@ package jmp.spring.mvc.controller;
 
 import jmp.spring.mvc.model.Employee;
 import jmp.spring.mvc.service.EmployeeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class EmployeeController {
@@ -27,11 +29,10 @@ public class EmployeeController {
     }
     
     @RequestMapping(value = "/findEmployee", method = RequestMethod.POST)
-	public String addEmployee(@ModelAttribute("fistName") String fistName,
-			@ModelAttribute("lastName") String lastName) {
-//    	employeeService.findAll()
-//    	model.addAttribute("employee", employeeService.findEmployeeById(id));
-    	return "editEmployee";
+	public @ResponseBody String findEmployee(@ModelAttribute("fistName") String firstName,
+			@ModelAttribute("lastName") String lastName, Model model) {
+    	Employee em = employeeService.findEmployee(firstName, lastName);
+    	return em == null ? "0" : String.valueOf((em.getId()));
     }
 
     @RequestMapping(value = "/editEmployee", method = RequestMethod.GET)

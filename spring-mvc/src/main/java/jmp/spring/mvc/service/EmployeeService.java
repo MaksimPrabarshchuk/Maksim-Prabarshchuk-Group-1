@@ -7,6 +7,8 @@ import jmp.spring.mvc.model.Employee;
 public interface EmployeeService {
 
     Employee findEmployeeById(long employeeId);
+    
+    Employee findEmployee(String firstName, String lastName);
 	
 	Employee saveEmployee(Employee employee);
 
