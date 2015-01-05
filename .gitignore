@@ -1,6 +1,8 @@
 # Eclipse
-*/.settings
-*/.project
+.settings
+.classpath
+.project
+bin
 
 # IDEA
 .idea
@@ -10,6 +12,7 @@
 
 # Maven
 */target
+*/*/target
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 

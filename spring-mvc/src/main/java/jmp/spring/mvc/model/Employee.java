@@ -1,16 +1,37 @@
 package jmp.spring.mvc.model;
 
-import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
+@Entity
 public class Employee {
 
-    private Long id;
+	@Id
+	@GeneratedValue
+    private long id;
+	
+	@NotNull
     private String firstName;
+	
+	@NotNull
     private String lastName;
+	
+	@NotNull
     private String gender;
-    private LocalDate hireDate;
+	
+	@NotNull
+    private String hireDate;
+    
+    @NotNull
     private String jobTitle;
+    
+    @NotNull
     private Double salary;
+    
+    public Employee() {
+    }
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
@@ -21,12 +42,24 @@ public class Employee {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getGender() {
@@ -37,11 +70,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public LocalDate getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(LocalDate hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 

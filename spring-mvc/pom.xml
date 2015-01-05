@@ -9,6 +9,10 @@
     <artifactId>spring-mvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
     <dependencies>
         <!-- Spring Framework -->
         <dependency>
@@ -99,6 +103,27 @@
             <version>1.0.0.GA</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Apache Tiles -->
+		<dependency>
+		    <groupId>org.apache.tiles</groupId>
+		    <artifactId>tiles-jsp</artifactId>
+		    <version>3.0.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.tiles</groupId>
+		    <artifactId>tiles-servlet</artifactId>
+		    <version>3.0.5</version>
+		</dependency>    
+		<dependency>
+		    <groupId>org.apache.tiles</groupId>
+		    <artifactId>tiles-template</artifactId>
+		    <version>3.0.5</version>
+		</dependency>    
+		<dependency>
+		    <groupId>org.apache.tiles</groupId>
+		    <artifactId>tiles-el</artifactId>
+		    <version>3.0.5</version>
+		</dependency>
         <!-- H2 Database -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -149,6 +174,19 @@
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- Tomcat plugin -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/${project.build.finalName}</path>
+                    <update>true</update>
+                    <url>http://localhost:8080/manager/text</url>
+                    <username>admin</username>
+                    <password>admin</password>
                 </configuration>
             </plugin>
         </plugins>
