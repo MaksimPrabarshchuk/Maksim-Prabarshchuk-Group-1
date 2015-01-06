@@ -13,25 +13,23 @@ $(document).ready(function() {
 		$("#errorMsg").css('display', 'none');
 	});
 
-	$(".submitSearchButton").click(function() {
+	$(".popover-markup").on("click", ".submitSearchButton", function() {
 		findEmployee($(this));
 	});
-});
+	
+	$(".popover-markup").on("mouseover", ".submitSearchButton", function() {
+		$(this).css('background-color', '#e6e6e6');
+	});
 
-$(".submitSearchButton").mouseover(function() {
-	alert(111 + $(this));
-	$(this).css('background-color', '#e6e6e6');
-});
-
-$(".submitSearchButton").mouseleave(function() {
-	alert(222 + $(this));
-	$(this).css('background-color','#fff');
+	$(".popover-markup").on("mouseleave", ".submitSearchButton", function() {
+		$(this).css('background-color','#fff');
+	});
 });
 
 function findEmployee(that) {
 	$.ajax({
 		type : "POST",
-		url : "/spring-mvc/findEmployee",
+		url : "findEmployee",
 		data : {fistName: $(that).parent().find("#fistName").val(), 
 				lastName: $(that).parent().find("#lastName").val()},
 		success: function(data) {
@@ -39,7 +37,7 @@ function findEmployee(that) {
 				$(that).parent().find("#errorMsg").css('display', 'block');
 			else {
 				$(that).parent().find("#errorMsg").css('display', 'none');
-				window.location.replace("http://localhost:8080/spring-mvc/editEmployee?id=" + data.toString());
+				window.location.replace("editEmployee?id=" + data.toString());
 			}
 		}
 	});

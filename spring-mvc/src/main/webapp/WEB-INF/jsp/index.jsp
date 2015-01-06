@@ -43,7 +43,8 @@
 	            <input id="lastName" type="text" class="form-control" placeholder="Last name">
 	            <span id="errorMsg" hidden="hidden">Such employee not found!</span>
 	        </div>
-			<button type="submit" class="btn btn-default btn-block submitSearchButton">Search</button>
+			<button type="submit" class="btn btn-default btn-block submitSearchButton"
+				style="border: 1px solid #fff; border-color: #ccc;">Search</button>
 		</div>
 	    <div class="footer hide">test</div>
 	</div>
