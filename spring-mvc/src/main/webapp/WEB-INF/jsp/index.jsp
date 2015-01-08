@@ -14,7 +14,7 @@
 		</tr>
 	</thead>
 	<tbody>
-        <c:forEach var="em" items="${employees}">
+        <c:forEach var="em" items="${page.content}">
             <tr>
                 <td class="tg-031e">${em.id}</td>
                 <td class="tg-031e">${em.firstName}</td>
@@ -31,7 +31,24 @@
         </c:forEach>
 	<tbody>
 </table>
-<p class="lead"></p>
+<p class="lead">
+	<c:if test="${page.totalPages > 0}">
+		<ul class="pagination">
+			<li><a href="#">&laquo;</a></li>
+			<c:forEach var="i" begin="0" end="${page.totalPages - 1}" varStatus="loop">
+				<c:choose>
+				    <c:when test="${page.number == i}">
+				       <li class="active"><a href="?page=${i}">${i + 1}</a></li>
+				    </c:when>
+				    <c:otherwise>
+		    			<li><a href="?page=${i}">${i + 1}</a></li>
+				    </c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</c:if>
+</p>
 <div class="lead" style="display: inline-flex;">
     <a href="addEmployee" class="btn btn-lg btn-default addEmployeeButton">Add Employee</a>
 	<div class="popover-markup" style="color:#333;">
@@ -43,8 +60,7 @@
 	            <input id="lastName" type="text" class="form-control" placeholder="Last name">
 	            <span id="errorMsg" hidden="hidden">Such employee not found!</span>
 	        </div>
-			<button type="submit" class="btn btn-default btn-block submitSearchButton"
-				style="border: 1px solid #fff; border-color: #ccc;">Search</button>
+			<button type="submit" class="btn btn-default btn-block submitSearchButton">Search</button>
 		</div>
 	    <div class="footer hide">test</div>
 	</div>
