@@ -1,0 +1,62 @@
+.actionButton {
+	color: #333;
+	font-weight: bold;
+}
+
+.addEmployeeButton {
+	margin-right: 10px;
+}
+
+#fistName {
+	margin-bottom: 10px; 
+}
+
+.submitSearchButton {
+	border: 1px solid #fff !important;
+	border-color: #ccc !important;
+}
+
+#errorMsg {
+	color: red;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+	width: 100%;
+}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+}
+
+.tg .tg-bsv2 {
+	background-color: #efefef;
+	text-align: center;
+}

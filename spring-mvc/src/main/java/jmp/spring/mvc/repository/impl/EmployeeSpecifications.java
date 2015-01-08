@@ -16,16 +16,14 @@ public class EmployeeSpecifications {
         return new Specification<Employee>() {
             @Override
             public Predicate toPredicate(Root<Employee> personRoot, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                String likePattern = getLikePattern(firstName);
+                String likeFirstNamePattern = getLikePattern(firstName);
+                String likeLastNamePattern = getLikePattern(lastName);
 				return cb.and(
-						cb.like(cb.lower(personRoot.<String> get(Employee_.firstName)), likePattern), 
-						cb.like(cb.lower(personRoot.<String> get(Employee_.lastName)), likePattern));
+						cb.like(cb.lower(personRoot.<String> get(Employee_.firstName)), likeFirstNamePattern), 
+						cb.like(cb.lower(personRoot.<String> get(Employee_.lastName)), likeLastNamePattern));
             }
             private String getLikePattern(final String searchTerm) {
-                StringBuilder pattern = new StringBuilder();
-                pattern.append(searchTerm.toLowerCase());
-                pattern.append("%");
-                return pattern.toString();
+                return searchTerm.toLowerCase() + "%";
             }
         };
     }

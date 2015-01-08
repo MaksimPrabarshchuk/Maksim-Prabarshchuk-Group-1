@@ -4,7 +4,7 @@
     .cng {color: #000000; display: inline-flex; width: 300px; margin-bottom: 20px;}
     .cng .cn {margin-left: 30px;}
 </style>
-<h1 class="cover-heading">Add New Employee</h1>
+<h1 class="cover-heading">Edit Employee Profile</h1>
 <form class="form-horizontal" action="updateEmployee" method="post">
     <fieldset>
         <!-- Form Name -->

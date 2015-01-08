@@ -1,17 +1,18 @@
 package jmp.spring.mvc.service.impl;
 
+import static jmp.spring.mvc.repository.impl.EmployeeSpecifications.lastNameAndFirstNameIsLike;
+
 import java.util.List;
 
 import jmp.spring.mvc.model.Employee;
 import jmp.spring.mvc.repository.EmployeeRepository;
-import jmp.spring.mvc.repository.impl.EmployeeSpecifications;
 import jmp.spring.mvc.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import static jmp.spring.mvc.repository.impl.EmployeeSpecifications.lastNameAndFirstNameIsLike;
 
 @Service
 public class DefaultEmployeeService implements EmployeeService {
@@ -41,8 +42,8 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-	public List<Employee> findAll() {
-		return employeeRepository.findAll();
+	public Page<Employee> findAll(Pageable page) {
+		return employeeRepository.findAll(page);
 	}
 
 	@Override
