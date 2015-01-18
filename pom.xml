@@ -19,5 +19,6 @@
         <module>hibernate-jpa</module>
         <module>spring-core</module>
         <module>spring-mvc</module>
+        <module>spring-jms</module>
     </modules>
 </project>
