@@ -117,10 +117,12 @@ public class ApplicationContext extends WebMvcConfigurerAdapter {
         return messageListenerContainer;
     }
 
+    @Bean
     public ConnectionFactory connectionFactory() {
         return new CachingConnectionFactory(new ActiveMQConnectionFactory(ACTIVEMQ_CONNECTION_URL));
     }
 
+    @Bean
     public MessageListener messageReceiver() {
         return new DefaultMessageReceiver();
     }
