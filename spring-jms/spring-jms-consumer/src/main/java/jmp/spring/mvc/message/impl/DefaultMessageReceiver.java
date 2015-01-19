@@ -26,7 +26,7 @@ public class DefaultMessageReceiver implements MessageListener {
                 em.setLastName(mapMessage.getString("lastName"));
                 em.setGender(mapMessage.getString("gender"));
                 em.setHireDate(LocalDate.now().toString());
-                em.setSalary(mapMessage.getDouble("jobTitle"));
+                em.setJobTitle(mapMessage.getString("jobTitle"));
                 em.setSalary(mapMessage.getDouble("salary"));
                 employeeService.saveEmployee(em);
             } catch (JMSException e) {

@@ -29,19 +29,19 @@ $(document).ready(function() {
         $.ajax({
             type : "POST",
             url : "getEmployees",
-            success: function(data) {
+            success: function(json) {
                 var table = $(".employeeTable");
                 if (table != undefined) {
-                    var json = JSON.parse(data);
+					table.empty();
                     for (var i = 0; i < json.length; i++) {
-                        var em = json.get();
-                        $(table).append("<tr>" +
+                        var em = json[i];
+                        table.append("<tr>" +
                             "<td class='tg-031e'>" + em.id + "</td>" +
-                            "<td class='tg-031e'>" + em.fistName + "</td>" +
+                            "<td class='tg-031e'>" + em.firstName + "</td>" +
                             "<td class='tg-031e'>" + em.lastName + "</td>" +
                             "<td class='tg-031e'>" + em.gender + "</td>" +
                             "<td class='tg-031e'>" + em.hireDate + "</td>" +
-                            "<td class='tg-031e'>" + em.jonTitle + "</td>" +
+                            "<td class='tg-031e'>" + em.jobTitle + "</td>" +
                             "<td class='tg-031e'>" + em.salary + "</td>" +
                             "<td class='tg-031e'>" +
                                 "<a href='editEmployee?id=" + em.id + "' class='actionButton'><img src='img/edit.png'></a>" +
