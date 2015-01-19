@@ -106,21 +106,27 @@ public class ApplicationContext extends WebMvcConfigurerAdapter {
     // JMS Configuration
 
     private static final String ACTIVEMQ_CONNECTION_URL = "tcp://localhost:61616";
-    private static final String ACTIVEMQ_QUEUE_NAME = "newUsers";
+    private static final String ACTIVEMQ_TOPIC_NAME = "newUsers";
 
     @Bean
     public SimpleMessageListenerContainer messageListenerContainer() {
         SimpleMessageListenerContainer messageListenerContainer = new SimpleMessageListenerContainer();
         messageListenerContainer.setConnectionFactory(connectionFactory());
-        messageListenerContainer.setDestinationName(ACTIVEMQ_QUEUE_NAME);
+        messageListenerContainer.setDestinationName(ACTIVEMQ_TOPIC_NAME);
         messageListenerContainer.setMessageListener(messageReceiver());
+        messageListenerContainer.setSubscriptionDurable(true);
         return messageListenerContainer;
     }
 
+    @Bean
     public ConnectionFactory connectionFactory() {
-        return new CachingConnectionFactory(new ActiveMQConnectionFactory(ACTIVEMQ_CONNECTION_URL));
+		ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(
+				ACTIVEMQ_CONNECTION_URL);
+    	activeMQConnectionFactory.setClientID("1");
+        return new CachingConnectionFactory(activeMQConnectionFactory);
     }
 
+    @Bean
     public MessageListener messageReceiver() {
         return new DefaultMessageReceiver();
     }

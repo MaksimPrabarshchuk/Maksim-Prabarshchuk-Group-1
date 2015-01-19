@@ -19,7 +19,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
     @RequestMapping(value = "/getEmployees", method = RequestMethod.POST)
-    public @ResponseBody List<Employee> findEmployee() {
+    public @ResponseBody List<Employee> getEmployees() {
         return employeeService.findAll();
     }
 
