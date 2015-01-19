@@ -4,7 +4,7 @@ import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +18,14 @@ import org.springframework.jms.core.JmsTemplate;
 public class AppConfig {
 
     private static final String ACTIVEMQ_CONNECTION_URL = "tcp://localhost:61616";
-    private static final String ACTIVEMQ_QUEUE_NAME = "newUsers";
+    private static final String ACTIVEMQ_TOPIC_NAME = "newUsers";
 
     @Bean
     public JmsTemplate jmsTemplate() {
         JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(connectionFactory());
         jmsTemplate.setDefaultDestination(defaultDestination());
+        jmsTemplate.setPubSubDomain(true);
         return jmsTemplate;
     }
 
@@ -33,6 +34,6 @@ public class AppConfig {
     }
 
     private Destination defaultDestination() {
-        return new ActiveMQQueue(ACTIVEMQ_QUEUE_NAME);
+        return new ActiveMQTopic(ACTIVEMQ_TOPIC_NAME);
     }
 }
