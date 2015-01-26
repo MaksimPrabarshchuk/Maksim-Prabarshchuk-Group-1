@@ -20,5 +20,6 @@
         <module>spring-core</module>
         <module>spring-mvc</module>
         <module>spring-jms</module>
+        <module>code-quality</module>
     </modules>
 </project>
