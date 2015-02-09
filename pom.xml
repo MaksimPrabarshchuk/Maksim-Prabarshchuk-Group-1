@@ -21,5 +21,6 @@
         <module>spring-mvc</module>
         <module>spring-jms</module>
         <module>code-quality</module>
+        <module>enterpise-patterns</module>
     </modules>
 </project>
