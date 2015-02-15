@@ -22,5 +22,6 @@
         <module>spring-jms</module>
         <module>code-quality</module>
         <module>enterpise-patterns</module>
+        <module>software-design</module>
     </modules>
 </project>
